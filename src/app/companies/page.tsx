@@ -7,9 +7,18 @@ import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import Image from "next/image";
 
+type Company = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  name: string;
+  image_url?: string;
+};
+
 export default function HomePage() {
-  const [allCompanies, setAllCompanies] = useState<any[]>([]);
-  const [featuredCompanies, setFeaturedCompanies] = useState<any[]>([]);
+  const [allCompanies, setAllCompanies] = useState<Company[]>([]);
+  const [featuredCompanies, setFeaturedCompanies] = useState<Company[]>([]);
   const placeholderImage = "/placeholder.png"; // Fallback Image
 
   useEffect(() => {
@@ -23,11 +32,11 @@ export default function HomePage() {
           );
         }
 
-        const data = await response.json();
+        const data: Company[] = await response.json(); // Explicitly typing the data as Company[]
         console.log("Fetched Companies:", data); // Debugging log
 
         // Ensure every company has an image
-        const updatedCompanies = data.map((company: any) => ({
+        const updatedCompanies = data.map((company) => ({
           ...company,
           image: company.image || placeholderImage,
         }));
@@ -49,7 +58,8 @@ export default function HomePage() {
         return;
       }
 
-      setFeaturedCompanies(data);
+      // Type assertion for featured companies
+      setFeaturedCompanies(data as Company[]); // Type assertion here
     };
 
     fetchAllCompanies();
