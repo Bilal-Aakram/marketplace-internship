@@ -32,10 +32,9 @@ export default function HomePage() {
           );
         }
 
-        const data: Company[] = await response.json(); // Explicitly typing the data as Company[]
-        console.log("Fetched Companies:", data); // Debugging log
+        const data: Company[] = await response.json();
+        console.log("Fetched Companies:", data);
 
-        // Ensure every company has an image
         const updatedCompanies = data.map((company) => ({
           ...company,
           image: company.image || placeholderImage,
@@ -58,7 +57,6 @@ export default function HomePage() {
         return;
       }
 
-      // Type assertion for featured companies
       setFeaturedCompanies(data as Company[]); // Type assertion here
     };
 
@@ -83,7 +81,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 🔥 All Companies Section (From FakeStoreAPI) */}
       <section className="mt-16">
         <h2 className="text-3xl font-bold text-center mb-6">All Companies</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -123,7 +120,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 🌟 Featured Companies (From Supabase) */}
       <section className="mt-16">
         <h2 className="text-3xl font-bold text-center mb-6">
           Featured Companies for Sale
@@ -165,7 +161,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 🛠️ How It Works */}
       <section className="mt-20 py-12 bg-gray-100 rounded-lg">
         <h2 className="text-3xl font-bold text-center mb-6">How It Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
@@ -190,7 +185,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 🚀 Call to Action */}
       <section className="text-center py-20">
         <h2 className="text-3xl font-bold">Ready to Buy or Sell a Business?</h2>
         <p className="text-lg text-gray-600 mt-4">

@@ -16,14 +16,12 @@ export default function AddCompanyPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Handle Input Change
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Validate Inputs
   const validateInputs = () => {
     if (
       !formData.name ||
@@ -63,7 +61,7 @@ export default function AddCompanyPage() {
         {
           ...formData,
           price: parseFloat(formData.price),
-          seller: user.user.email, // Save the user's email as seller
+          seller: user.user.email,
         },
       ])
       .select("*");
@@ -72,7 +70,7 @@ export default function AddCompanyPage() {
       setError(error.message);
     } else {
       console.log("New company added:", data);
-      router.push("/companies"); // Redirect to refresh the list
+      router.push("/companies");
     }
 
     setLoading(false);
